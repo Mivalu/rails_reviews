@@ -1,0 +1,41 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<div class="hero-unit">
+<h2><%= @restaurant.name %></h2>
+<p><%= @restaurant.phone %></p>
+<p>Average Rating: <% (1..@restaurant.average_stars).each do |x| %>
+	<span>*</span>
+	 <% end %>
+</p>
+</div>
+
+
+<% @restaurant.reviews.order(:created_at).each do |single_review| %>
+	<hr />
+	Created Date: <%= single_review.created_at.strftime("%A, %B %d, %Y at %r") %><br />
+	This user gave: <%= single_review.stars %> Stars<br />
+	This user said: <%= single_review.description %>
+<% end %>
+
+<h2>Add Review</h2>
+<p>Post your honest review about this NY Restaurant</p>
+
+<% if flash[:error] %>
+	<span color="red">Error</span>
+	<% flash[:error].each do |msg| %>
+	<%= msg %>
+	<% end %>
+<% end %>
+<%= form_for [@restaurant, @restaurant.reviews.new] do |form| %>
+	<%= form.label :description %>
+	<%= form.text_field :description %>
+	<%= form.label :stars %>
+	<%= form.text_field :stars %>
+	<%= form.submit %>
+
+<% end %>
+
+<div class="footer">
+	<%= link_to "Restaurants Home", restaurants_path %><br />
+Michele Lugo, January 25, 2014
+</div>

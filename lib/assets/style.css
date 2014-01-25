@@ -1,0 +1,13 @@
+.footer {
+	color: #C7A6CF;
+	font-family: Georgia;
+	font-size: 12px;
+}
+.hero-unit {
+	background-color: #E0E4B6;
+	color: #5D2D69;
+}
+.hero-unit a {
+	color: #5D2D69;
+	text-transform: underline;
+}

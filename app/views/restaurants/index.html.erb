@@ -1,0 +1,28 @@
+
+<div class="hero-unit">
+	<h1>Rails Reviews</h1>
+	<p>Best Restaurant Reviews in the NY Area!</p>
+	<p><%= link_to "Add a Restaurant", new_restaurant_path %></p>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<th>Name</th>
+		<th>Phone</th>
+		<th>Actions</th>
+	</thead>
+	<tbody>
+		<% @restaurants.each do |single_restaurant| %>
+			<tr>
+				<td><%= link_to single_restaurant.name, restaurant_path(single_restaurant) %></td>
+				<td><%= single_restaurant.phone %></td>
+				<td><%= link_to "Edit", edit_restaurant_path(single_restaurant) %> | 
+	<%= link_to 'Destroy', single_restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
+
+<div class="footer">
+	<%= link_to "Restaurants Home", restaurants_path %><br />
+	Michele Lugo, January 25, 2014</div>
